@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Part Finder — TVS Parts Catalogue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="blueprint-grid" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="brand">
+      <span class="brand-mark">⌘</span>
+      <span class="brand-text">PART&nbsp;FINDER</span>
+    </div>
+    <span class="brand-sub">Tarun Gurturthi</span>
+  </div>
+</header>
+
+<main class="console">
+  <section class="hero">
+    <p class="eyebrow">SPARES LOOKUP</p>
+    <h1>Find the exact part number<br>for any vehicle in seconds.</h1>
+    <p class="hero-sub">Select a vehicle, narrow by variant, then start typing a part name — the number comes straight from the parts catalogue.</p>
+  </section>
+
+  <div class="mode-toggle" role="tablist" aria-label="Search mode">
+    <button type="button" class="mode-btn active" data-mode="by-vehicle" role="tab" aria-selected="true">
+      Know the vehicle
+    </button>
+    <button type="button" class="mode-btn" data-mode="by-number" role="tab" aria-selected="false">
+      Only have a part number
+    </button>
+  </div>
+
+  <section class="search-panel" id="panel-by-vehicle" aria-label="Search by vehicle">
+    <div class="field">
+      <label for="vehicle-select">01 · Vehicle</label>
+      <select id="vehicle-select" disabled>
+        <option value="">Loading vehicles…</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="version-select">02 · Variant / version</label>
+      <select id="version-select" disabled>
+        <option value="Any">Any</option>
+      </select>
+    </div>
+
+    <div class="field field-autocomplete">
+      <label for="part-input">03 · Part name</label>
+      <div class="autocomplete-wrap">
+        <input id="part-input" type="text" autocomplete="off" placeholder="Select a vehicle first…" disabled>
+        <ul id="suggestions" class="suggestions" hidden></ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="search-panel search-panel-single" id="panel-by-number" aria-label="Search by part number" hidden>
+    <div class="field">
+      <label for="number-input">Part number (or name)</label>
+      <input id="number-input" type="text" autocomplete="off" placeholder="e.g. K6011090, or part of a name…">
+      <p class="field-hint">Searches every vehicle's catalogue at once — useful when you have the number or a fragment of it but not the bike.</p>
+    </div>
+  </section>
+
+  <section id="results" class="results" hidden>
+    <div class="results-head">
+      <span class="results-label">RESULT</span>
+      <span id="results-count" class="results-count"></span>
+    </div>
+    <div id="results-list" class="results-list"></div>
+  </section>
+
+  <section id="empty-state" class="empty-state">
+    <div class="empty-plate">
+      <span class="empty-plate-corner"></span>
+      <p>No part selected yet.</p>
+      <p class="empty-plate-sub">Choose a vehicle above, then search for a part name to pull its number from the catalogue.</p>
+    </div>
+  </section>
+
+  <p id="status-line" class="status-line" hidden></p>
+</main>
+
+<footer class="site-footer">
+  <span id="stats-line">Loading index…</span>
+</footer>
+
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
