@@ -17,7 +17,7 @@ import re
 import json
 from flask import Flask, render_template, request, jsonify
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="public", static_url_path="")
 APP_ROOT = os.path.dirname(__file__)
 INDEX_PATH = os.path.join(APP_ROOT, "parts_index.json")
 

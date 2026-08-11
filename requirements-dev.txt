@@ -1,0 +1,3 @@
+# Only needed to (re)build parts_index.json from the PDFs in testdata/.
+# Not required for running the deployed app itself.
+pypdf>=3.0
